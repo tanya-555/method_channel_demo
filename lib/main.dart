@@ -31,6 +31,12 @@ class _MyAppState extends State<MyApp> {
     });
   }
 
+  void _reset() {
+    setState(() {
+      textHolder = 'No data received yet!';
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -38,15 +44,26 @@ class _MyAppState extends State<MyApp> {
         appBar: AppBar(
           title: Text('Platform Channel Demo'),
         ),
-        body: Container(
+        body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              ElevatedButton(
-                child: Text('Get Data from Native'),
-                onPressed: () {
-                  _onDataFetchedFromNative();
-                },
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  ElevatedButton(
+                    child: Text('Get Data from Native'),
+                    onPressed: () {
+                      _onDataFetchedFromNative();
+                    },
+                  ),
+                  ElevatedButton(
+                    child: Text('Reset'),
+                    onPressed: () {
+                      _reset();
+                    },
+                  ),
+                ],
               ),
               Text('$textHolder',
                 style: TextStyle(
